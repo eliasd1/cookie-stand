@@ -20,11 +20,24 @@ nav ul li a{
     text-decoration: none;
 }
 header h1{
-    text-align:center;
+    margin:20px auto;
+    width: 500px;
     font-family: 'Raleway', sans-serif;
     color:rgb(109, 95, 95);
+    background-color: #121223;
 }
 header img{
     display:block;
     margin:0 auto;
+}
+section table{
+    margin:100px auto;
+    border-collapse: collapse;
+    background-color: #3a3a48;
+}
+section table tr th, section table tr td{
+    padding:10px;
+}
+section table tr td{
+    border:1px solid rgb(37, 31, 31)
 }
