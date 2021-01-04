@@ -1,110 +1,33 @@
-var seattle = {
-    locationName: "Seattle",
-    minCust: 23,
-    maxCust: 65,
-    avgPerCust:6.3,
-    randomNum: function(){
-        var min = Math.ceil(this.minCust); 
-        var max = Math.floor(this.maxCust); 
-        return Math.floor(Math.random() * (max - min + 1)) + min; 
-    },
-    simulatedAmount: function(){
-        this.results = []
-        for(let i = 6; i< 20; i++){
-            this.results.push({
-                time: getTime(i),
-                amount: Math.ceil(this.avgPerCust * this.randomNum())
-            })
-        }
-    },
-    results: [],
+var locations = [];
+function AddLocation(locationName, minCust, maxCust, avgPerCust){
+    this.locationName = locationName;
+    this.minCust = minCust;
+    this.maxCust = maxCust;
+    this.avgPerCust = avgPerCust
+    this.results = [];
+    this.simulateAmount();
+    locations.push(this);
 }
-var tokyo = {
-    locationName: "Tokyo",
-    minCust: 3,
-    maxCust: 24,
-    avgPerCust:1.2,
-    randomNum: function(){
-        var min = Math.ceil(this.minCust); 
-        var max = Math.floor(this.maxCust); 
-        return Math.floor(Math.random() * (max - min + 1)) + min; 
-    },
-    simulatedAmount: function(){
-        this.results = []
-        for(let i = 6; i< 20; i++){
-            this.results.push({
-                time: getTime(i),
-                amount: Math.ceil(this.avgPerCust * this.randomNum())
-            })
-        }
-    },
-    results: []
+AddLocation.prototype.randomNum = function(){
+    return Math.floor(Math.random() * (this.maxCust - this.minCust + 1)) + this.minCust; 
 }
-var dubai = {
-    locationName: "Dubai",
-    minCust: 11,
-    maxCust: 38,
-    avgPerCust:3.7,
-    randomNum: function(){
-        var min = Math.ceil(this.minCust); 
-        var max = Math.floor(this.maxCust); 
-        return Math.floor(Math.random() * (max - min + 1)) + min; 
-    },
-    simulatedAmount: function(){
-        this.results = []
-        for(let i = 6; i< 20; i++){
-            this.results.push({
-                time: getTime(i),
-                amount: Math.ceil(this.avgPerCust * this.randomNum())
-            })
-        }
-    },
-    results: [],
+AddLocation.prototype.simulateAmount = function(){
+    this.results = []
+    for(let i = 6; i< 20; i++){
+        this.results.push({
+            time: getTime(i),
+            amount: Math.ceil(this.avgPerCust * this.randomNum())
+        })
+    }
 }
-var paris = {
-    locationName: "Paris",
-    minCust: 20,
-    maxCust: 38,
-    avgPerCust: 2.3,
-    randomNum: function(){
-        var min = Math.ceil(this.minCust); 
-        var max = Math.floor(this.maxCust); 
-        return Math.floor(Math.random() * (max - min + 1)) + min; 
-    },
-    simulatedAmount: function(){
-        this.results = []
-        for(let i = 6; i< 20; i++){
-            this.results.push({
-                time: getTime(i),
-                amount: Math.ceil(this.avgPerCust * this.randomNum())
-            })
-        }
-    },
-    results: [],
-}
-var lima = {
-    locationName: "Lima",
-    minCust: 2,
-    maxCust: 16,
-    avgPerCust:4.6,
-    randomNum: function(){
-        var min = Math.ceil(this.minCust); 
-        var max = Math.floor(this.maxCust); 
-        return Math.floor(Math.random() * (max - min + 1)) + min; 
-    },
-    simulatedAmount: function(){
-        this.results = []
-        for(let i = 6; i< 20; i++){
-            this.results.push({
-                time: getTime(i),
-                amount: Math.ceil(this.avgPerCust * this.randomNum())
-            })
-        }
-    },
-    results: [],
-}
-var locations = [seattle, tokyo, dubai, paris, lima]
-simulateAmount(locations);
+
+var seattle = new AddLocation("Seattle", 23, 65, 6.3);
+var tokyo = new AddLocation("Tokyo", 3, 24, 1.2);
+var dubai = new AddLocation("Dubai", 11, 38, 3.7);
+var paris = new AddLocation("Paris", 20, 38, 2.3);
+var lima = new AddLocation("Lima", 2, 16, 4.6)
+
+
 var body = document.querySelector("body")
 for (let i = 0; i < locations.length; i++){
     var total = 0;
@@ -131,10 +54,5 @@ function getTime(i){
         return i + "am"
     } else{
         return (i-12) + "pm"
-    }
-}
-function simulateAmount(locations){
-    for(let i = 0; i<locations.length; i++){
-        locations[i].simulatedAmount();
     }
 }
