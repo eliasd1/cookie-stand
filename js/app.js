@@ -52,6 +52,15 @@ generateTable()
 form.addEventListener("submit", function(event){
     event.preventDefault();
     var input = event.target;
+    debugger;
+    if(checkExistingLocations(input.locationName.value)){
+       var allLocations = tbody.querySelectorAll("tr")
+       for(let i = 0; i<allLocations.length; i++){
+            if(allLocations[i].querySelector("td").textContent === input.locationName.value){
+                tbody.removeChild(allLocations[i])
+            }
+       }
+    }
     var newLocation = new AddLocation(input.locationName.value, Number(input.minCust.value), Number(input.maxCust.value), Number(input.avgPerCust.value));
     var tfoot = document.querySelector("tfoot");
     newLocation.render();
@@ -91,6 +100,17 @@ function createTableBody(){
     table.appendChild(tbody)
 }
 function createFooter(){
+    var allLocations = [...tbody.querySelectorAll("tr")]
+    allLocations.sort((a,b) =>{
+        a = a.querySelector("td").textContent
+        b = b.querySelector("td").textContent
+        if(a > b){
+            return 1
+        } else{
+            return -1
+        }
+    })
+    allLocations.forEach(d => tbody.appendChild(d))
     var combinedTotals = 0;
     var tfoot = document.createElement("tfoot")
     var tr = document.createElement("tr")
@@ -122,4 +142,13 @@ function getTime(i){
     } else{
         return (i-12) + "pm"
     }
+}
+function checkExistingLocations(name){
+    for(let i = 0; i<locations.length; i++){
+        if(locations[i].locationName === name){
+            locations = locations.filter(d => d.locationName !== name);
+            return true;
+        }
+    }
+    return false;
 }
