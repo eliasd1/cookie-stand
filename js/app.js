@@ -52,7 +52,6 @@ generateTable()
 form.addEventListener("submit", function(event){
     event.preventDefault();
     var input = event.target;
-    debugger;
     if(checkExistingLocations(input.locationName.value)){
        var allLocations = tbody.querySelectorAll("tr")
        for(let i = 0; i<allLocations.length; i++){
