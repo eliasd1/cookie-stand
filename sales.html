@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        table{
+            margin:20px;
+        }
+        table thead th:first-child{
+            opacity:0;
+        }
+        table thead th:last-child{
+            text-align:start;
+        }
+        table tr{
+            color:white;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="sales.html">Sales</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section>
+            <form id = "form" action="/">
+                <fieldset>
+                    <legend>Add a New Store</legend>
+                    <label for="locationName">Location: </label>
+                    <input name = "locationName" id = "locationName" type="text" required>
+                    <label for="minCust">Min. Customers: </label>
+                    <input name = "minCust" id = "minCust" type="number" min = 0 required>
+                    <label for="maxCust">Max Customers: </label>
+                    <input name = "maxCust" id = "maxCust" type="number" min = 0 required>
+                    <label for="avgPerCust">Avergae Per Customer: </label>
+                    <input name = "avgPerCust" id = "avgPerCust" type="number" min = 0 step = "0.1" required>
+                    <button>Submit</button>
+                </fieldset>
+            </form>
+        </section>
+    </main>
+    <script src="js/app.js"></script>
+</body>
+</html>
